@@ -1,0 +1,13 @@
+---
+- name : play book to create a directory and file it
+  hosts : Docker2
+  tasks :
+  - name : creating the directory /test1
+    file :
+      path : /test1
+      state : directory
+
+  - name: creating the file welcome
+    copy :
+      content : "Welcome to Automation \n"
+      dest : /test1/welcome

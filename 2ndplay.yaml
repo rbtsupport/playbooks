@@ -1,0 +1,27 @@
+---
+- name : Deploying Apache web
+  hosts : all
+  tasks :
+  - name : installing httpd
+    yum :
+      name : httpd
+      state : latest
+
+  - name : start and enable service
+    service : 
+      name : httpd
+      state : started
+      enabled : yes
+
+  - name : create index file
+    copy :
+      content : "welcome to ajith \n"
+      dest : /var/www/html/index.html
+
+  - name : add service under firewall
+    firewalld :
+      service : http
+      permanent : yes
+      state : enabled
+      immediate : yes
+    
